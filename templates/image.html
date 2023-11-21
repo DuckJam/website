@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title_block %}
+    {% if image %}
+        {{image.name}}
+    {% else %}
+        image not found
+    {% endif %}
+{% endblock %}
+
+{% block head_block %}
+{% endblock %}
+
+
+{% block body_block %}
+    {% if image %}
+        <div class="header">
+            <h1>{{image.name}}</h1>
+        </div>
+
+
+        <div class = "text">
+            <img src="{{media_url}}{{ image.image }}">
+        </div>
+    {% else %}
+        <div class="header">
+            <h1>Post not found</h1>
+        </div>
+        <img src="{{post.image}}">
+        <div class = "text">
+            It looks like the post that you were trying to find does not exist.
+        </div>
+    {% endif %}
+{% endblock %}
+

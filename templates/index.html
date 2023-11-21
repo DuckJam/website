@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title_block %}
+    David Jaramillo
+{% endblock %}
+
+{% block head_block %}
+{% endblock %}
+
+
+{% block body_block %}
+<div class="header">
+    <h1>David Jaramillo</h1>
+</div>
+
+
+<div class = "text">
+    Welcome to the website of David Jaramillo. Don't get lost.
+</div>
+
+<div class="list">
+    <h2>Recent Posts</h2>
+    {% if posts %}
+    <ul>
+    {% for post in posts %}
+        <li>
+            <a href="{% url 'show_post' post.pk  %}">{{post.title}}</a>
+        </li>
+        <br>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no categories present.</strong>
+    {%endif%}
+</div>
+<div class="list">
+    <h2>Recent Images</h2>
+    {% if images %}
+    <ul>
+    {% for i in images %}
+        <li>
+            <a href="{{MEDIA_URL}}{{ i.image.url }}">
+            <img src="{{MEDIA_URL}}{{ i.image.url }}" alt="{{i.name}}">
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no images present.</strong>
+    {%endif%}
+</div>
+
+{% endblock %}

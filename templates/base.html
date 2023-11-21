@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <head>
+        <title>
+            {% block title_block %}
+            David Jaramillo
+            {% endblock %}
+        </title>
+        {% block head_block %}
+        {%endblock%}
+        
+    </head>
+    <body>
+        {% block body_block %}
+        {% endblock %}
+    </body>
+    <footer>
+        {% block footer %}
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About Me</a></li>
+        {% endblock %}
+    </footer>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title_block %}
+    {% if post %}
+        {{post.title}}
+    {% else %}
+        Post not found
+    {% endif %}
+{% endblock %}
+
+{% block head_block %}
+{% endblock %}
+
+
+{% block body_block %}
+    {% if post %}
+        <div class="header">
+            <h1>{{post.title}}</h1>
+            <h2 id = "date">{{post.date}}</h2>
+        </div>
+        
+        <div class = "text">
+            {{post.text}}
+        </div>
+        <div class="list">
+            {% for i in images%}
+            <img src="{{MEDIA_URL}}{{i.image.url}}" alt = "{{i.name}}!">
+        {% endfor%}
+        </div>
+    {% else %}
+        <div class="header">
+            <h1>Post not found</h1>
+        </div>
+        
+        <div class = "text">
+            It looks like the post that you were trying to find does not exist.
+        </div>
+    {% endif %}
+{% endblock %}
+
