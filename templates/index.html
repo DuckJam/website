@@ -25,29 +25,29 @@
     <ul>
     {% for post in posts %}
         <li>
-            <a href="{% url 'show_post' post.pk  %}">{{post.title}}</a>
+            <a href="{% url 'post' post.pk  %}">{{post.title}}</a>
         </li>
         <br>
     {% endfor %}
     </ul>
     {% else %}
-    <strong>There are no categories present.</strong>
+    <strong>There are no posts present.</strong>
     {%endif%}
 </div>
+
 <div class="list">
-    <h2>Recent Images</h2>
-    {% if images %}
+    <h2>Recent Projects</h2>
+    {% if projects %}
     <ul>
-    {% for i in images %}
+    {% for project in projects %}
         <li>
-            <a href="{{MEDIA_URL}}{{ i.image.url }}">
-            <img src="{{MEDIA_URL}}{{ i.image.url }}" alt="{{i.name}}">
-            </a>
+            <a href="{% url 'project' project.slug  %}">{{project.title}}</a>
         </li>
+        <br>
     {% endfor %}
     </ul>
     {% else %}
-    <strong>There are no images present.</strong>
+    <strong>There are no projects present.</strong>
     {%endif%}
 </div>
 

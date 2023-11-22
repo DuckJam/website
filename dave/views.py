@@ -17,12 +17,12 @@ def index(request):
     }
     visitor_cookie_handler(request)
     """
-    post_list = Post.objects.order_by('-date')[:3]
-    image_list = Image.objects.order_by('name')[:3]
+    post_list = Post.objects.order_by('-date')[:5]
+    project_list = Project.objects.order_by('-date')[:5]
 
     context_dict = {
         'posts':post_list,
-        'images':image_list,
+        'projects':project_list,
     }
     response = render(request, "index.html", context= context_dict)
     return response
@@ -31,13 +31,17 @@ def about(request):
     response = render(request, "about.html")
     return response
 
-def show_post(request, pk):
+def post(request, pk):
     context_dict ={}
     try:
         post = Post.objects.get(pk = pk)
-        images = post.image.all()
-        context_dict['post'] = post
-        context_dict['images'] = images
+        if post.visible:
+            images = post.image.all()
+            context_dict['post'] = post
+            context_dict['images'] = images
+            context_dict['project'] = post.project
+        else:
+            raise Post.DoesNotExist
     except Post.DoesNotExist:
         context_dict['post'] = None
     return render(request, 'post.html', context = context_dict)
@@ -51,3 +55,13 @@ def show_image(request, image_id):
         context_dict['image'] = None
     return render(request, 'image.html', context = context_dict)
 
+def project(request, project_title_slug):
+    context_dict ={}
+    try:
+        project = Project.objects.get(slug = project_title_slug)
+        posts = Post.objects.filter(project = project)
+        context_dict['project'] = project
+        context_dict['posts'] = posts
+    except Project.DoesNotExist:
+        context_dict['project'] = None
+    return render(request, 'project.html', context = context_dict)

@@ -23,8 +23,14 @@
         <div class = "text">
             {{post.text}}
         </div>
+        {% if project%}
+        <div class = "text">
+            Read more about this project here:
+            <a href="{% url 'project' project.slug  %}">{{project.title}}</a>
+        </div>
+        {%endif%}
         <div class="list">
-            {% for i in images%}
+        {% for i in images%}
             <img src="{{MEDIA_URL}}{{i.image.url}}" alt = "{{i.name}}!">
         {% endfor%}
         </div>
