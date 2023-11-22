@@ -5,21 +5,24 @@
     <head>
         <title>
             {% block title_block %}
-            David Jaramillo
+            duck jam
             {% endblock %}
+            - duck jam
         </title>
         {% block head_block %}
         {%endblock%}
         
     </head>
+    <div class="duck-jam">
+        <a href="{% url 'index' %}">duck jam</a>
+    </div>
     <body>
         {% block body_block %}
         {% endblock %}
     </body>
     <footer>
         {% block footer %}
-        <li><a href="{% url 'index' %}">Home</a></li>
-        <li><a href="{% url 'about' %}">About Me</a></li>
+        <li><a href="{% url 'about' %}">What is duck jam?</a></li>
         {% endblock %}
     </footer>
 </html>
