@@ -28,7 +28,7 @@ MEDIA_DIR = BASE_DIR / 'media'
 SECRET_KEY = "django-insecure-$nmi%-tc*j!bpj%t6qtp9ov_i3s5ibt9hke!yfh803&mbn+svp"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "duckjam.pythonanywhere.com",
