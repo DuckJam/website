@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from datetime import datetime
 
 NAME_MAX_LENGTH = 128
 
@@ -32,11 +33,10 @@ class Image(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=NAME_MAX_LENGTH, unique=True)
-    date = models.DateTimeField("date published")
+    date = models.DateTimeField("date published", default = datetime.now)
     text = models.TextField()
-    #image = models.ImageField(upload_to='images', blank=True)
-    image = models.ManyToManyField(Image)
-    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
+    image = models.ManyToManyField(Image, null=True, blank=True)
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True, blank = True)
     visible = models.BooleanField(default=True)
     slug = models.SlugField(unique=True)
     def save(self, *args, **kwargs):
